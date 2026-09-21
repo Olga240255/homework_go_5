@@ -22,7 +22,7 @@ func ReadAllText(r io.Reader) (string, error) {
 func CountBytes(r io.Reader) (int, error) {
 	n, err := io.Copy(io.Discard, r)
 	if err != nil {
-		return 0, err
+		return int(n), err
 	}
 	return int(n), nil
 }
@@ -32,7 +32,7 @@ func WriteString(w io.Writer, text string) (int, error) {
 	b := []byte(text)
 	n, err := w.Write(b)
 	if err != nil {
-		return 0, err
+		return n, err
 	}
 	return n, nil
 }
@@ -53,7 +53,7 @@ func WriteLines(w io.Writer, lines []string) error {
 func CopyAll(dst io.Writer, src io.Reader) (int64, error) {
 	n, err := io.Copy(dst, src)
 	if err != nil {
-		return 0, err
+		return n, err
 	}
 	return n, nil
 }
@@ -67,7 +67,7 @@ func CopyUpper(dst io.Writer, src io.Reader) (int64, error) {
 	s := []byte(strings.ToUpper(string(b)))
 	n, err := dst.Write(s)
 	if err != nil {
-		return 0, err
+		return int64(n), err
 	}
 	return int64(n), nil
 }

@@ -135,7 +135,7 @@ type Renamer interface{ Rename(name string) }
 
 // TODO: IsRenamer должен проверить, реализует ли значение Renamer.
 func IsRenamer(value any) bool {
-	_, ok := value.(*Profile)
+	_, ok := value.(Renamer)
 	if ok == true {
 		return true
 	}

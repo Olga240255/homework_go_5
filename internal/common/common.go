@@ -39,6 +39,9 @@ func WriteFileLines(path string, lines []string) error {
 			return err
 		}
 		_, err = F.Write([]byte("\n"))
+		if err != nil {
+			return err
+		}
 	}
 	if err := F.Sync(); err != nil {
 		return err

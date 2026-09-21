@@ -61,12 +61,19 @@ func Run(args []string, out io.Writer) error {
 	}
 	for i := 0; i < O.Repeat; i++ {
 		_, err = out.Write([]byte("hello, "))
+		if err != nil {
+			return err
+		}
 		_, err = out.Write([]byte(O.Name))
+		if err != nil {
+			return err
+		}
 		_, err = out.Write([]byte("\n"))
+		if err != nil {
+			return err
+		}
 	}
-	if err != nil {
-		return err
-	}
+
 	return nil
 }
 
